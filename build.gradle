@@ -18,6 +18,6 @@ allprojects {
     }
 }
 
-wrapper{
+wrapper {
     gradleVersion = '2.7'
 }
