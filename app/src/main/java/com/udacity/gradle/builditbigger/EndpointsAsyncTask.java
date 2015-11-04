@@ -15,9 +15,9 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
 
     public static String LOG_TAG = EndpointsAsyncTask.class.getSimpleName();
     private static MyApi myApiService = null;
-    private final MainActivityFragment.JokeListener jokeListener;
+    private final JokeListener jokeListener;
 
-    public EndpointsAsyncTask(MainActivityFragment.JokeListener jokeListener) {
+    public EndpointsAsyncTask(JokeListener jokeListener) {
         this.jokeListener = jokeListener;
     }
 
@@ -52,6 +52,10 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
             Log.e(LOG_TAG, "Error trying to fetch joke from server.", e);
             return e.getMessage();
         }
+    }
+
+    public interface JokeListener {
+        public void jokeReceived(String joke);
     }
 
     @Override

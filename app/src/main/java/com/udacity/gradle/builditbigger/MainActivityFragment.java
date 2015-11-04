@@ -1,10 +1,8 @@
 package com.udacity.gradle.builditbigger;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.util.Pair;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +49,7 @@ public class MainActivityFragment extends Fragment {
         return root;
     }
 
-    public class JokeListener {
+    public class MyJokeListener implements EndpointsAsyncTask.JokeListener {
 
         public void jokeReceived(String joke) {
 
@@ -68,7 +66,7 @@ public class MainActivityFragment extends Fragment {
     public void tellJoke(View view){
 
         // Fetch joke in background and display using JokeListener
-        new EndpointsAsyncTask(new JokeListener()).execute();
+        new EndpointsAsyncTask(new MyJokeListener()).execute();
         Toast.makeText(getActivity(), "Hold on tight.. joke upcoming", Toast.LENGTH_SHORT).show();
     }
 }
