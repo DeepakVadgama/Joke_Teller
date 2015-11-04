@@ -17,6 +17,7 @@ public class JokeActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_joke, container, false);
+
         Intent intent = getActivity().getIntent();
         String joke = intent.getStringExtra(JokeActivity.JOKE_KEY);
         TextView jokeTextView = (TextView) root.findViewById(R.id.joke_textview);

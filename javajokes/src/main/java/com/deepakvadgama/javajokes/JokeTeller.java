@@ -11,8 +11,8 @@ public class JokeTeller {
             "Start every day off with a smile and get it over with.",
             "My wife sent her photograph to the Lonely Hearts Club. They sent it back saying they weren't that lonely.",
             "A snail walks into a bar and the barman tells him there's a strict policy about having snails in the bar and so kicks him out. A year later the same snail re-enters the bar and asks the barman \"What did you do that for?\"",
-            "A: Hey, man! Please call me a taxi. \nB: Yes, sir. You are a taxi. ",
-            "\"I was born in California.\" \n\"Which part?\" \n\"All of me.\"",
+            "John: Hey, man! Please call me a taxi. \nJake: Yes, sir. You are a taxi. ",
+            "John: \"I was born in California.\" \nJake: \"Which part?\" \n John: \"All of me.\"",
             "Teacher: Did your father help your with your homework? \nStudent: No, he did it all by himself."
     };
 

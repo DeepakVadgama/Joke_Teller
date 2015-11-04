@@ -1,9 +1,7 @@
 package com.udacity.gradle.builditbigger;
 
-import android.content.Context;
 import android.os.AsyncTask;
-import android.support.v4.util.Pair;
-import android.widget.Toast;
+import android.util.Log;
 
 import com.deepakvadgama.jokes.gce.myApi.MyApi;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -13,12 +11,21 @@ import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 
 import java.io.IOException;
 
-public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
+public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
+
+    public static String LOG_TAG = EndpointsAsyncTask.class.getSimpleName();
     private static MyApi myApiService = null;
-    private Context context;
+    private final MainActivityFragment.JokeListener jokeListener;
+
+    public EndpointsAsyncTask(MainActivityFragment.JokeListener jokeListener) {
+        this.jokeListener = jokeListener;
+    }
 
     @Override
-    protected String doInBackground(Pair<Context, String>... params) {
+    protected String doInBackground(Void... params) {
+
+
+        Log.i(LOG_TAG, "Building GCE service fetcher");
         if (myApiService == null) {  // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
@@ -32,23 +39,28 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
                             abstractGoogleClientRequest.setDisableGZipContent(false); // Change this later
                         }
                     });
-            // end options for devappserver
 
             myApiService = builder.build();
         }
 
-        context = params[0].first;
-        String name = params[0].second;
-
         try {
-            return myApiService.getJoke().execute().getData();
+            Log.i(LOG_TAG, "Calling GCE service fetcher");
+            String joke = myApiService.getJoke().execute().getData();
+            Log.i(LOG_TAG, "Joke fetched: " + joke);
+            return joke;
         } catch (IOException e) {
+            Log.e(LOG_TAG, "Error trying to fetch joke from server.", e);
             return e.getMessage();
         }
     }
 
     @Override
-    protected void onPostExecute(String result) {
-        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+    protected void onPostExecute(String joke) {
+//        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+        if (jokeListener != null) {
+            jokeListener.jokeReceived(joke);
+        } else {
+            Log.i(LOG_TAG, "Joke received but listener is null");
+        }
     }
 }

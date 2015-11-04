@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">JokesAndroid</string>
-    <string name="joke_text">Dummy Joke</string>
+    <string name="joke_text">Dummy Joke which can be \n multi line and also could be \n very lloooooooonnnnng</string>
+    <string name="joke">Joke</string>
 </resources>
