@@ -50,7 +50,7 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
             return joke;
         } catch (IOException e) {
             Log.e(LOG_TAG, "Error trying to fetch joke from server.", e);
-            return e.getMessage();
+            return null;
         }
     }
 
