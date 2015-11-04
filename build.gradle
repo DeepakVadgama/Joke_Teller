@@ -21,3 +21,30 @@ allprojects {
 wrapper {
     gradleVersion = '2.7'
 }
+
+
+task startServer() {
+    dependsOn ':gcejokes:appengineRun'
+}
+task runTests() {
+    dependsOn ':app:connectedAndroidTest'
+}
+task stopServer() {
+    dependsOn ':gcejokes:appengineStop'
+}
+
+runTests.mustRunAfter startServer
+stopServer.mustRunAfter runTests
+
+task startServerAndRunTests() {
+
+    dependsOn = ["startServer", "runTests", "stopServer"]
+
+    evaluationDependsOn ":gcejokes"
+
+    project(":gcejokes") {
+        appengine {
+            daemon true
+        }
+    }
+}

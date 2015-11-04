@@ -22,7 +22,7 @@ public class AsyncTaskTest extends AndroidTestCase {
         task.execute();
 
         try {
-            latch.await(25, TimeUnit.SECONDS);
+            latch.await(20, TimeUnit.SECONDS);
             assertNotNull("Joke received was null", jokeReceived);
         } catch (InterruptedException e) {
             assertTrue(false);

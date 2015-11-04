@@ -27,9 +27,6 @@ public class MyEndpoint {
 
     private JokeTeller jokeTeller = new JokeTeller();
 
-    /**
-     * A simple endpoint method that takes a name and says Hi back
-     */
     @ApiMethod(name = "getJoke", httpMethod = ApiMethod.HttpMethod.GET)
     public MyBean getJoke() {
         MyBean response = new MyBean();
